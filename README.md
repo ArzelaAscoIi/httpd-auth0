@@ -1,7 +1,7 @@
 
 
 <p align="center">
-    An <a href="https://httpd.apache.org/docs/2.4/de/invoking.html">Apache httpd</a> and Auth0 plug & play solution.
+    An <a href="https://httpd.apache.org/docs/2.4/de/invoking.html">Apache httpd</a> and <a href="https://auth0.com/de">Auth0</a> plug & play solution.
 </p>
 
 ### Prerequisits
