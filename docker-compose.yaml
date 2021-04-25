@@ -1,0 +1,40 @@
+version: '3.6'
+
+services:
+
+  apache:
+    image: broadinstitute/openidc-baseimage:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      CALLBACK_PATH: /
+      CALLBACK_URI: <your callback uri>
+      CLIENTID: <your client id> 
+      CLIENTSECRET: <your client secret>
+      OIDC_COOKIE: example_session
+      OIDC_SCOPES: openid email profile test
+      OIDC_PROVIDER_METADATA_URL: <your provider domain>
+
+      PROXY_PATH: /
+      PROXY_PATH2: /api
+      SERVER_NAME: <your server name> 
+    volumes:
+        - ./config/apache2.conf:/etc/apache2/apache2.conf
+        - ./config/proxy.conf:/etc/apache2/mods-enabled/proxy.conf
+
+  influxdb:
+    image: quay.io/influxdb/influxdb:v2.0.4
+    ports: 
+      - 8086:8086
+  portainer:
+    image: portainer/portainer
+    command: -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9000:9000
+      - 8000:8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  
